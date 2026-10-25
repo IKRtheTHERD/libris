@@ -66,7 +66,29 @@ function current_language(): string
 
 function base_path(): string
 {
-    return rtrim((string) (getenv('LIBRIS_BASE_PATH') ?: ''), '/');
+    static $derived = null;
+    $configured = getenv('LIBRIS_BASE_PATH');
+    if ($configured !== false && $configured !== '') {
+        return rtrim($configured, '/');
+    }
+    $derived ??= derive_base_path();
+    return $derived;
+}
+
+function derive_base_path(): string
+{
+    $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_FILENAME'] ?? ''));
+    $root = str_replace('\\', '/', dirname(__DIR__));
+    $name = (string) ($_SERVER['SCRIPT_NAME'] ?? '');
+    if ($script === '' || $name === '' || !str_starts_with(strtolower($script), strtolower($root . '/'))) {
+        return '';
+    }
+    $relative = substr($script, strlen($root) + 1);
+    if (!str_ends_with($name, '/' . $relative)) {
+        return '';
+    }
+    $base = rtrim(substr($name, 0, -strlen($relative) - 1), '/');
+    return preg_match('#^(/[A-Za-z0-9._~-]+)*$#', $base) === 1 ? $base : '';
 }
 
 function app_url(string $path = ''): string
@@ -79,6 +101,9 @@ function redirect_to(string $path): never
 {
     if (!str_starts_with($path, '/') || str_starts_with($path, '//') || preg_match('/[\r\n]/', $path)) {
         $path = app_url();
+    }
+    if (str_starts_with($path, '//') || preg_match('/[\r\n]/', $path)) {
+        $path = '/';
     }
 
     header('Location: ' . $path, true, 303);
