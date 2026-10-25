@@ -87,7 +87,8 @@ function derive_base_path(): string
     if (!str_ends_with($name, '/' . $relative)) {
         return '';
     }
-    return rtrim(substr($name, 0, -strlen($relative) - 1), '/');
+    $base = rtrim(substr($name, 0, -strlen($relative) - 1), '/');
+    return preg_match('#^(/[A-Za-z0-9._~-]+)*$#', $base) === 1 ? $base : '';
 }
 
 function app_url(string $path = ''): string
@@ -100,6 +101,9 @@ function redirect_to(string $path): never
 {
     if (!str_starts_with($path, '/') || str_starts_with($path, '//') || preg_match('/[\r\n]/', $path)) {
         $path = app_url();
+    }
+    if (str_starts_with($path, '//') || preg_match('/[\r\n]/', $path)) {
+        $path = '/';
     }
 
     header('Location: ' . $path, true, 303);
