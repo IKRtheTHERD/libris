@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 680" role="img" aria-labelledby="title desc">
+  <title id="title">Libris book cover artwork</title>
+  <desc id="desc">A terracotta sun rising above quiet evergreen hills, framed like a book jacket.</desc>
+  <rect width="480" height="680" fill="#e8dfcc"/>
+  <rect x="25" y="25" width="430" height="630" fill="none" stroke="#274b3f" stroke-width="2"/>
+  <circle cx="240" cy="260" r="103" fill="#c97352"/>
+  <path d="M27 418c81-74 148-93 214-37 65 55 119 51 212-13v285H27z" fill="#476451"/>
+  <path d="M27 500c91-55 153-67 223-28 62 35 112 37 203-11v192H27z" fill="#274b3f"/>
+  <path d="M58 82h78M344 82h78" stroke="#b78b54" stroke-width="2"/>
+  <text x="240" y="111" fill="#274b3f" font-family="Georgia,serif" font-size="18" letter-spacing="5" text-anchor="middle">LIBRIS EDITIONS</text>
+  <text x="240" y="565" fill="#f4f0e7" font-family="Georgia,serif" font-size="31" text-anchor="middle">A story starts</text>
+  <text x="240" y="605" fill="#f4f0e7" font-family="Georgia,serif" font-size="31" font-style="italic" text-anchor="middle">somewhere.</text>
+  <circle cx="68" cy="614" r="4" fill="#c97352"/>
+  <circle cx="412" cy="614" r="4" fill="#c97352"/>
+</svg>

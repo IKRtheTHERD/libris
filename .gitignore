@@ -1,0 +1,32 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+config.local.php
+**/config.local.php
+secrets/
+**/secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Downloads, generated data, logs, and agent-only artifacts
+/artifacts/
+/graphify-out/
+/database/*.gz
+/database/*.gz.part
+/database/seed.*.sql
+!/database/seed.sql
+*.part
+*.tmp
+*.log
+
+# Local caches and dependencies
+__pycache__/
+*.py[cod]
+/node_modules/
+/vendor/
